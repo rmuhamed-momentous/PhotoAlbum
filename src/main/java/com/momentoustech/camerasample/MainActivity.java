@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         intent.putExtra(MediaStore.EXTRA_DURATION_LIMIT, VIDEO_DURATION);
 
         // start the image capture Intent
-        this.startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+        this.startActivityForResult(intent, RECORD_VIDEO_ACTIVITY_REQUEST_CODE);
     }
 
     private void launchCamera() {
