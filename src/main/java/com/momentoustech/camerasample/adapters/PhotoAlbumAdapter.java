@@ -27,6 +27,7 @@ import java.util.Collection;
  * Created by Ricardo on 3/16/2016.
  */
 public class PhotoAlbumAdapter extends RecyclerView.Adapter<PhotoAlbumHolder> {
+
     private static final int VIDEO_ITEM = 1;
     private static final int PICTURE_ITEM = 2;
 
@@ -66,7 +67,7 @@ public class PhotoAlbumAdapter extends RecyclerView.Adapter<PhotoAlbumHolder> {
         viewHolder.creationDate.setText(format.format(contentItem.getCreationDate()));
 
         if(viewHolder instanceof PhotoAlbumVideoHolder){
-            viewHolder.thumbnail.setImageBitmap(ThumbnailUtils.createVideoThumbnail(contentItem.getUri(), MediaStore.Video.Thumbnails.MICRO_KIND));
+            viewHolder.thumbnail.setImageBitmap(ThumbnailUtils.createVideoThumbnail(contentItem.getUri(), MediaStore.Video.Thumbnails.MINI_KIND));
 
             ((PhotoAlbumVideoHolder) viewHolder).playVideoButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -77,7 +78,6 @@ public class PhotoAlbumAdapter extends RecyclerView.Adapter<PhotoAlbumHolder> {
         }else{
             viewHolder.thumbnail.setImageURI(Uri.parse(contentItem.getUri()));
         }
-
     }
 
     @Override
@@ -92,7 +92,7 @@ public class PhotoAlbumAdapter extends RecyclerView.Adapter<PhotoAlbumHolder> {
 
     @Override
     public int getItemViewType(int position) {
-        int viewType = 0;
+        int viewType;
         MediaContent aMediaContent = ((ArrayList<MediaContent>)this.items).get(position);
 
         if (aMediaContent instanceof VideoContent){
