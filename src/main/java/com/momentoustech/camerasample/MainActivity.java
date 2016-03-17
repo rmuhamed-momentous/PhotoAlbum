@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.momentoustech.camerasample.adapters.PhotoAlbumAdapter;
 import com.momentoustech.camerasample.model.MediaContent;
 import com.momentoustech.camerasample.model.PictureContent;
+import com.momentoustech.camerasample.model.VideoContent;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -31,6 +32,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private static final String VIDEO_FILE_URI = "vid-%s.3gp";
     private static final String IMAGE_FILE_URI = "img-%s.png";
+    private static final int VIDEO_DURATION = 10;
+    private static final int VIDEO_QUALITY_HIGH = 1;
 
     private File imageFile;
     private File videoFile;
@@ -83,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     break;
                 case RECORD_VIDEO_ACTIVITY_REQUEST_CODE:
-                    Toast.makeText(this, "WS not implemented yet", Toast.LENGTH_SHORT).show();
+                    this.displayVideoThumbnail();
                     break;
             }
         }else{
@@ -98,7 +101,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         this.videoFile = new File(picturesPath, String.format(VIDEO_FILE_URI, UUID.randomUUID().toString()));
 
         // create a file to save the image
-        intent.putExtra(MediaStore.EXTRA_OUTPUT,  this.videoFile.toURI()); // set the image file name
+        intent.putExtra(MediaStore.EXTRA_OUTPUT,  Uri.fromFile(this.videoFile)); // set the image file name
+        intent.putExtra(MediaStore.EXTRA_DURATION_LIMIT, VIDEO_DURATION);
 
         // start the image capture Intent
         this.startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
@@ -125,6 +129,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             pictureContent.setUri(Uri.fromFile(this.imageFile).toString());
 
             this.photoAlbum.add(pictureContent);
+            this.adapterForRecycler.notifyDataSetChanged();
+        }
+    }
+
+    private void displayVideoThumbnail() {
+        if(this.videoFile!=null){
+            VideoContent videoContent = new VideoContent();
+            videoContent.setDuration(VIDEO_DURATION);
+            videoContent.setQuality(VIDEO_QUALITY_HIGH);
+            videoContent.setAuthor(this.getString(R.string.dummy_author_label));
+            videoContent.setCreationDate(new Date());
+            videoContent.setUri(Uri.fromFile(this.videoFile).toString());
+
+            this.photoAlbum.add(videoContent);
             this.adapterForRecycler.notifyDataSetChanged();
         }
     }
