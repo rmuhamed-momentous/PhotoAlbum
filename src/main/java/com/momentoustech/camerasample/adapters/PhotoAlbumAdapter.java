@@ -42,18 +42,18 @@ public class PhotoAlbumAdapter extends RecyclerView.Adapter<PhotoAlbumHolder> {
 
     @Override
     public PhotoAlbumHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View contentView = null;
+        PhotoAlbumHolder holder = null;
 
         switch (viewType){
             case VIDEO_ITEM:
-                contentView = this.inflater.inflate(R.layout.photo_album_video_item, parent, false);
+                holder = new PhotoAlbumVideoHolder(this.inflater.inflate(R.layout.photo_album_video_item, parent, false));
                 break;
             case PICTURE_ITEM:
-                contentView = this.inflater.inflate(R.layout.photo_album_picture_item, parent, false);
+                holder = new PhotoAlbumPictureHolder(this.inflater.inflate(R.layout.photo_album_picture_item, parent, false));
                 break;
         }
 
-        return new PhotoAlbumPictureHolder(contentView);
+        return holder;
     }
 
     @Override
