@@ -8,6 +8,7 @@ import java.util.Date;
 public class MediaContent {
     private String author;
     private String uri;
+    private String fullPath;
     private Date creationDate;
 
     public String getAuthor() {
@@ -32,5 +33,13 @@ public class MediaContent {
 
     public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
+    }
+
+    public String getFullPath() {
+        return fullPath;
+    }
+
+    public void setFullPath(String fullPath) {
+        this.fullPath = fullPath;
     }
 }

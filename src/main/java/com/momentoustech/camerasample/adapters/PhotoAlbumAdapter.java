@@ -22,6 +22,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Locale;
 
 /**
  * Created by Ricardo on 3/16/2016.
@@ -30,6 +31,7 @@ public class PhotoAlbumAdapter extends RecyclerView.Adapter<PhotoAlbumHolder> {
 
     private static final int VIDEO_ITEM = 1;
     private static final int PICTURE_ITEM = 2;
+    private static final String DATE_FORMAT_PATTERN = "dd-MM-yyyy";
 
     private final LayoutInflater inflater;
     private final Collection<MediaContent> items;
@@ -63,7 +65,7 @@ public class PhotoAlbumAdapter extends RecyclerView.Adapter<PhotoAlbumHolder> {
 
         viewHolder.author.setText(contentItem.getAuthor());
 
-        DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+        DateFormat format = new SimpleDateFormat(DATE_FORMAT_PATTERN, Locale.getDefault());
         viewHolder.creationDate.setText(format.format(contentItem.getCreationDate()));
 
         if(viewHolder instanceof PhotoAlbumVideoHolder){

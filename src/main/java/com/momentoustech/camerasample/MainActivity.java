@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
     private static final int RECORD_VIDEO_ACTIVITY_REQUEST_CODE = 200;
 
+    private static final String VIDEO_FILE_PATH = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath();
     private static final String VIDEO_FILE_URI = "vid-%s.3gp";
     private static final String IMAGE_FILE_URI = "img-%s.png";
     private static final int VIDEO_DURATION = 10;
@@ -47,7 +48,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         this.setContentView(R.layout.activity_main);
 
         this.setSupportActionBar((Toolbar) this.findViewById(R.id.toolbar));
-
         this.photoAlbum = new ArrayList<>();
         this.setupLayout();
     }
@@ -127,6 +127,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             pictureContent.setAuthor(this.getString(R.string.dummy_author_label));
             pictureContent.setCreationDate(new Date());
             pictureContent.setUri(Uri.fromFile(this.imageFile).toString());
+            pictureContent.setFullPath(this.imageFile.getAbsolutePath());
 
             this.photoAlbum.add(pictureContent);
             this.adapterForRecycler.notifyDataSetChanged();
@@ -141,6 +142,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             videoContent.setAuthor(this.getString(R.string.dummy_author_label));
             videoContent.setCreationDate(new Date());
             videoContent.setUri(Uri.fromFile(this.videoFile).toString());
+            videoContent.setFullPath(this.videoFile.getAbsolutePath());
 
             this.photoAlbum.add(videoContent);
             this.adapterForRecycler.notifyDataSetChanged();

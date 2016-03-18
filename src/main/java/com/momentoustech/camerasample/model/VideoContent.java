@@ -1,5 +1,9 @@
 package com.momentoustech.camerasample.model;
 
+import android.net.Uri;
+
+import java.util.Date;
+
 /**
  * Created by Ricardo on 3/16/2016.
  */
