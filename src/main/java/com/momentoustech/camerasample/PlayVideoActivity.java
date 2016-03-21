@@ -5,10 +5,14 @@ import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.VideoView;
 
+import com.momentoustech.camerasample.model.VideoContent;
+
 /**
  * Created by Ricardo on 3/18/2016.
  */
 public class PlayVideoActivity extends AppCompatActivity {
+    private VideoContent videoContent;
+
     @Override
     public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
@@ -17,7 +21,7 @@ public class PlayVideoActivity extends AppCompatActivity {
 
         this.getVideoContentFromExtras();
 
-        VideoView videoView = (VideoView) this.findViewById(R.id.video_player);
+        VideoView v = (VideoView) findViewById(R.id.video_player);
 
     }
 
